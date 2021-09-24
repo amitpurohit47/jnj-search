@@ -1,38 +1,128 @@
-.App {
+.App{
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+}
+
+.jj-logo{
+  position: fixed;
+  top: 30px;
+  left: 30px;
+  height: 130px;
+}
+
+.drop-zone {
+  width: 500px;
+  height: 200px;
+  padding: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: "Quicksand", sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  cursor: pointer;
+  color: #cccccc;
+  border: 4px dashed red;
+  border-radius: 10px;
+}
+
+.drop-zone--over {
+  border-style: solid;
+}
+
+.drop-zone__input {
+  display: none;
+}
+
+.drop-zone__thumb {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #cccccc;
+  background-size: cover;
+  position: relative;
+}
+
+.drop-zone__thumb::after {
+  content: attr(data-label);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 5px 0;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.75);
+  font-size: 14px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.search-main{
   display: flex;
-  flex-direction: column;
+  flex-flow: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.search-field{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: row-reverse;
+  height: 40px;
+  border-radius: 30px;
+  width: 500px;
+  border: 2px solid red;
+  margin-bottom: 30px;
+}
+
+.search-field img{
+  height: 50%;
+}
+
+.search-field input{
+  background-color: transparent;
+  border: 0;
+  outline: none;
+  width: 90%;
+  font-size: 1.2rem;
+}
+
+.successful-upload{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+}
+
+.successful-upload img{
+  height: 30px;
+  margin-right: 10px;
+}
+
+.successful-upload p{
+  color: #3bb54a;
+}
+
+.download-result{
+  padding: 10px 20px;
+  background-color: red;
   color: white;
+  border-radius: 30px;
+  position: fixed;
+  top: 80px;
+  right: 30px;
+  border: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.download-result img{
+  filter: invert(100%);
+  margin-right: 10px;
+  height: 20px;
 }
