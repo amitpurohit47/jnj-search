@@ -1,11 +1,15 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import searchIcon from "./loupe.png";
 import jjlogo from "./JJ-logo.jpg";
 import check from "./check.png";
 import download from "./download-arrow.png";
+
 import "./App.css";
+import axios from "axios";
 
 function App() {
+  const [downloadAvailable, setDownloadAvailable] = useState(false);
+
   useEffect(() => {
     document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
       const dropZoneElement = inputElement.closest(".drop-zone");
@@ -77,6 +81,7 @@ function App() {
       } else {
         thumbnailElement.style.backgroundImage = null;
       }
+      postData(file);
       document.querySelector(".successful-upload").style.opacity = 1;
       setTimeout(() => {
         document.querySelector(".successful-upload").style.opacity = 0;
@@ -84,18 +89,48 @@ function App() {
     }
   }, []);
 
+  const postData = async (file) => {
+    try {
+      setDownloadAvailable(false);
+      await axios.post("http://127.0.0.1:5000/", { file });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleSearch = async () => {
+    const val = document.querySelector("input-search");
+    try {
+      const url = "http://127.0.0.1:5000/runscript/" + val;
+      const res = await axios.get(url);
+      if (res.status.toString().toUpperCase() === "OK") {
+        setDownloadAvailable(true);
+      } else {
+        alert("Invalid Input");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+
+
   return (
     <div className="App">
       <img src={jjlogo} alt="logo" className="jj-logo" />
-      <button className="download-result">
+      <button
+        className={`download-result ${
+          downloadAvailable ? "download-active" : null
+        }`}
+      >
         <img src={download} alt="download" />
         Download
       </button>
       <div className="search-main">
-        <div className="search-field">
+        <form className="search-field" onSubmit={handleSearch}>
           <img src={searchIcon} alt="search" />
-          <input type="text" />
-        </div>
+          <input type="text" className="input-search" />
+        </form>
         <div className="drop-zone">
           <span className="drop-zone__prompt">
             Click here to upload template and generate multiple search term data

@@ -108,7 +108,7 @@
 
 .download-result{
   padding: 10px 20px;
-  background-color: red;
+  background-color: #cccccc;
   color: white;
   border-radius: 30px;
   position: fixed;
@@ -119,10 +119,18 @@
   align-items: center;
   justify-content: center;
   font-size: 1.2rem;
+  pointer-events: none;
+  cursor: not-allowed;
 }
 
 .download-result img{
   filter: invert(100%);
   margin-right: 10px;
   height: 20px;
+}
+
+.download-result.download-active{
+  background-color: red;
+  pointer-events: visible;
+  cursor: pointer;
 }
