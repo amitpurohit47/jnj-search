@@ -115,7 +115,7 @@ function App() {
 
   const downloadReport = async () => {
     axios({
-      url: "https://source.unsplash.com/random/500x500",
+      url: "http://127.0.0.1:5000/get-files/output.xlsx",
       method: "GET",
       responseType: "blob",
     })
