@@ -105,13 +105,8 @@ function App() {
     const val = document.querySelector(".input-search").value;
     try {
       const url = "http://127.0.0.1:5000/runscript/" + val;
-      console.log(url);
-      const res = await axios.get(url);
-      if (res.status.toString().toUpperCase() === "OK") {
-        setDownloadAvailable(true);
-      } else {
-        alert("Invalid Input");
-      }
+      await axios.get(url);
+      setDownloadAvailable(true);
     } catch (error) {
       console.log(error);
     }
