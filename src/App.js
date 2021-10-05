@@ -92,16 +92,20 @@ function App() {
   const postData = async (file) => {
     try {
       setDownloadAvailable(false);
-      await axios.post("http://127.0.0.1:5000/", { file });
+      console.log(file);
+      const res = await axios.post("http://127.0.0.1:5000/", { file });
+      console.log(res);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const handleSearch = async () => {
-    const val = document.querySelector("input-search").value;
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    const val = document.querySelector(".input-search").value;
     try {
       const url = "http://127.0.0.1:5000/runscript/" + val;
+      console.log(url);
       const res = await axios.get(url);
       if (res.status.toString().toUpperCase() === "OK") {
         setDownloadAvailable(true);
