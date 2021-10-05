@@ -99,7 +99,7 @@ function App() {
   };
 
   const handleSearch = async () => {
-    const val = document.querySelector("input-search");
+    const val = document.querySelector("input-search").value;
     try {
       const url = "http://127.0.0.1:5000/runscript/" + val;
       const res = await axios.get(url);
